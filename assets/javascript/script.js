@@ -62,7 +62,10 @@
         })
 
        database.ref().on("child_added", function (childSnapshot) {
-       
+
+        var frequency = parseInt(childSnapshot.val().frequency)
+        var firstTrainTime = parseInt(childSnapshot.val().firstTrainTime)
+        
         var firstTimeConverted = moment(firstTrainTime, "HH:mm").subtract(1, "years");
         console.log(firstTimeConverted);
     
@@ -85,6 +88,7 @@
         // Next Train
         var nextTrain = moment().add(tMinutesTillTrain, "minutes");
         console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
+        nextTrain = moment(nextTrain).format("hh:mm")
      
 
 
